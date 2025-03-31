@@ -1,4 +1,5 @@
 import math
+import fuerzaBruta
 import os
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
@@ -8,6 +9,8 @@ import time
 # Otra cosa mas documente lo mas importante para que vean como esta el codigo, aunque pues lo importante son las clases y lo algoritmos
 # Pero documente la interfaz por si necesitan saber... Cuando hagan la funcion de su algorimo haganlo en diferentes ramas y despues hacen el merge a la rama principal
 # Esto es para no tener ningun conflicto 
+
+# Mas adelante colocare mas comentarios para que puedan entender el codigo
 
 # Clases donde estructuramos los datos
 class GrupoAgente:
@@ -25,19 +28,13 @@ class RedSocial:
         self.grupos = grupos
         self.R_max = R_max 
     
+    #cambiamos la funcincion de conflicto interno y  aplicar estrategia
     def calcular_conflicto_interno(self):
-
-        numerador = 0
-        denominador = 0
-        
-        for grupo in self.grupos:
-            numerador += grupo.n * (grupo.op1 - grupo.op2)**2
-            denominador += grupo.n
-        
-        if denominador == 0:
+        if len(self.grupos) == 0:
             return 0
-        return numerador / denominador
-    
+        numerador = sum(grupo.n * (grupo.op1 - grupo.op2)**2 for grupo in self.grupos)
+        return numerador / len(self.grupos)
+        
     def calcular_esfuerzo(self, estrategia):
 
         esfuerzo = 0
@@ -48,22 +45,22 @@ class RedSocial:
         return esfuerzo
     
     def aplicar_estrategia(self, estrategia):
-
         nuevos_grupos = []
         
         for i, grupo in enumerate(self.grupos):
             e = estrategia[i]
-            if e < grupo.n:  # Si no todos los agentes fueron moderados
-                nuevo_n = grupo.n - e
-                if nuevo_n > 0:
-                    nuevos_grupos.append(GrupoAgente(nuevo_n, grupo.op1, grupo.op2, grupo.rig))
+            nuevo_n = grupo.n - e
+            # Aseguramos que nuevo_n no sea negativo (si se moderan todos, queda 0)
+            nuevo_n = max(nuevo_n, 0)
+            nuevos_grupos.append(GrupoAgente(nuevo_n, grupo.op1, grupo.op2, grupo.rig))
         
         return RedSocial(nuevos_grupos, self.R_max)
+
 
 ########### En enta parte coloquen lo algoritmos ##########
 
 # Funcion Fuerza Bruta
-#...
+fuerzaBruta = fuerzaBruta.modciFuerzaBruta
 
 # Funcion Programacion Dinamica
 #...
@@ -136,13 +133,13 @@ def interfaz_grafica():
             
             if algoritmo == "Fuerza Bruta":
                 # Aca llama la funcion de fuerza bruta (Jean Paul)
-                return
+                resultado = fuerzaBruta(red_social)
             elif algoritmo == "Voraz":
                 # Aca llama a la funcion voraz (Miguel)
-                return
+                return #Este retunr es solo para que no de error, lo quitan cuando hagan la funcion
             elif algoritmo == "Programación Dinámica":
                 # Aca llama a la funcion programacio dinamica (Alejandro)
-                return
+                return #Este retunr es solo para que no de error, lo quitan cuando hagan la funcion (Casi se me olvida)
             
             tiempo_fin = time.time()
             tiempo_ejecucion = tiempo_fin - tiempo_inicio
