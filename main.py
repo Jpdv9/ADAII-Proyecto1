@@ -1,6 +1,7 @@
 import math
 import fuerzaBruta
 import dinamica
+import voraz
 import os
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
@@ -67,7 +68,7 @@ fuerzaBruta = fuerzaBruta.modciFB
 dinamica = dinamica.modciPD
 
 # Funcion Voraz
-#...
+voraz = voraz.modciV
 
 ###########################################################
 
@@ -137,7 +138,7 @@ def interfaz_grafica():
                 resultado = fuerzaBruta(red_social)
             elif algoritmo == "Voraz":
                 # Aca llama a la funcion voraz (Miguel)
-                return #Este retunr es solo para que no de error, lo quitan cuando hagan la funcion
+                resultado = voraz(red_social)
             elif algoritmo == "Programación Dinámica":
                 # Aca llama a la funcion programacio dinamica (Alejandro)
                 resultado = dinamica(red_social)
