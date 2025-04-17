@@ -61,7 +61,7 @@ class RedSocial:
 ########### En enta parte coloquen lo algoritmos ##########
 
 # Funcion Fuerza Bruta
-fuerzaBruta = fuerzaBruta.modciFuerzaBruta
+fuerzaBruta = fuerzaBruta.modciFB
 
 # Funcion Programacion Dinamica
 dinamica = dinamica.modciPD

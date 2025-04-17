@@ -1,6 +1,6 @@
 import math
 
-def modciFuerzaBruta(red_social):
+def modciFB(red_social):
     n = len(red_social.grupos)
     mejor_estrategia = [0] * n
     mejor_conflicto = red_social.calcular_conflicto_interno()
