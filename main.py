@@ -1,5 +1,6 @@
 import math
 import fuerzaBruta
+import dinamica
 import os
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
@@ -63,7 +64,7 @@ class RedSocial:
 fuerzaBruta = fuerzaBruta.modciFuerzaBruta
 
 # Funcion Programacion Dinamica
-#...
+dinamica = dinamica.modciPD
 
 # Funcion Voraz
 #...
@@ -139,7 +140,7 @@ def interfaz_grafica():
                 return #Este retunr es solo para que no de error, lo quitan cuando hagan la funcion
             elif algoritmo == "Programación Dinámica":
                 # Aca llama a la funcion programacio dinamica (Alejandro)
-                return #Este retunr es solo para que no de error, lo quitan cuando hagan la funcion (Casi se me olvida)
+                resultado = dinamica(red_social)
             
             tiempo_fin = time.time()
             tiempo_ejecucion = tiempo_fin - tiempo_inicio
